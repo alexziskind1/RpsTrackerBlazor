@@ -1,7 +1,7 @@
 ﻿@page "/dashboard"
 @page "/dashboard/{Months:int}/{UserId:int}"
 
-@using RPS.Data
+
 @inject NavigationManager NavigationManager
 
 <div class="dashboard">
@@ -22,13 +22,13 @@
 
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
-                <button type="button" class="pt-class-range-filter btn btn-secondary" @onclick="@(e => DateRangeFilter(3))">
+                <button class="pt-class-range-filter btn btn-outline-secondary" @onclick="@(e => DateRangeFilter(3))">
                     3 Months
                 </button>
-                <button type="button" class="pt-class-range-filter btn btn-secondary" @onclick="@(e => DateRangeFilter(6))">
+                <button class="pt-class-range-filter btn btn-outline-secondary" @onclick="@(e => DateRangeFilter(6))">
                     6 Months
                 </button>
-                <button type="button" class="pt-class-range-filter btn btn-secondary" @onclick="@(e => DateRangeFilter(12))">
+                <button class="pt-class-range-filter btn btn-outline-secondary" @onclick="@(e => DateRangeFilter(12))">
                     1 Year
                 </button>
             </div>
