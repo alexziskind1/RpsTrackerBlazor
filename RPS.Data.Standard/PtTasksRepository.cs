@@ -19,9 +19,11 @@ namespace RPS.Data
         {
             var item = context.PtItems.Single(i => i.Id == newTask.ItemId);
 
+            var newTaskId = item.Tasks.Count > 0 ? item.Tasks.Max(t => t.Id) + 1 : 1;
+
             PtTask task = new PtTask
             {
-                Id = item.Tasks.Max(t=>t.Id) + 1,
+                Id = newTaskId,
                 Title = newTask.Title,
                 Completed = false,
                 DateCreated = DateTime.Now,

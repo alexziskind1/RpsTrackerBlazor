@@ -19,9 +19,11 @@ namespace RPS.Data
         {
             var item = context.PtItems.Single(i => i.Id == newComment.ItemId);
 
+            var newCommentId = item.Comments.Count > 0 ? item.Comments.Max(t => t.Id) + 1 : 1;
+
             PtComment comment = new PtComment
             {
-                Id = item.Comments.Max(t => t.Id) + 1,
+                Id = newCommentId,
                 Title = newComment.Title,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
