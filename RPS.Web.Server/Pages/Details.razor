@@ -1,15 +1,17 @@
 ﻿@page "/details/{Id:int}/{ScreenParam}"
 
 @using RPS.Web.Server.Models;
+@using RPS.Web.Server.Components.Backlog;
 
 <div>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
         <h1 class="h2" id="itemTitle">@Item.Title</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
-                <a asp-page="Details" asp-route-id="@Item.Id" asp-route-screen="Details" class="btn btn-outline-secondary">Details</a>
-                <a asp-page="Details" asp-route-id="@Item.Id" asp-route-screen="Tasks" class="btn btn-outline-secondary">Tasks</a>
-                <a asp-page="Details" asp-route-id="@Item.Id" asp-route-screen="Chitchat" class="btn btn-outline-secondary">Chitchat</a>
+                <NavLink href=@($"/Details/{Item.Id}/Details") class="btn btn-outline-secondary">Details</NavLink>
+                <NavLink href=@($"/Details/{Item.Id}/Tasks") class="btn btn-outline-secondary">Tasks</NavLink>
+                <NavLink href=@($"/Details/{Item.Id}/Chitchat") class="btn btn-outline-secondary">Chitchat</NavLink>
+
             </div>
         </div>
     </div>
@@ -18,11 +20,15 @@
 @{ switch (Screen)
     {
         case DetailScreenEnum.Details:
-<div>Details</div> break;
-case DetailScreenEnum.Tasks:
-<div>Tasks</div> break;
-case DetailScreenEnum.Chitchat:
-<div>Chitchat</div> break;
-            } }
+            <DetailsForm Item="Item" />
+            break;
+        case DetailScreenEnum.Tasks:
+            <Tasks />
+            break;
+        case DetailScreenEnum.Chitchat:
+            <Chitchat />
+            break;
+    }
+}
 
 @code { }

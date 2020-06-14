@@ -33,7 +33,7 @@
         <tbody>
             @foreach (var item in PtItems)
             {
-                <tr class="pt-table-row" onclick="location.href = '/@item.Id/Details'">
+                <tr class="pt-table-row" onclick="location.href = 'Details/@item.Id/Details'">
 
                     <td>
                         <ItemTypeIndicator ItemType="@item.Type" ClassName="backlog-icon" />

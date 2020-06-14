@@ -22,10 +22,6 @@ namespace RPS.Web.Server.Pages
         [Inject]
         private NavigationManager NavigationManager { get; set; }
 
-        // public string Title { get; set; }
-        // public string Description { get; set; }
-
-
         private void HandleValidSubmit()
         {
             var newItem = ToPtNewItem();
