@@ -11,6 +11,8 @@ namespace RPS.Web.Server.Components.Backlog
 {
     public partial class Chitchat : ComponentBase
     {
+        private const int CURRENT_USER_ID = 21; //Fake user id for demo
+
         [Parameter]
         public PtItem Item { get; set; }
 
@@ -30,7 +32,7 @@ namespace RPS.Web.Server.Components.Backlog
         protected override void OnInitialized()
         {
             CommentItems = Item.Comments;
-            CurrentUser = RpsUsersRepo.GetAll().Where(u => u.Id == 21).FirstOrDefault();
+            CurrentUser = RpsUsersRepo.GetAll().Where(u => u.Id == CURRENT_USER_ID).FirstOrDefault();
             base.OnInitialized();
         }
 
@@ -48,7 +50,8 @@ namespace RPS.Web.Server.Components.Backlog
             PtNewComment commentNew = new PtNewComment
             {
                 ItemId = Item.Id,
-                Title = NewCommentTitle
+                Title = NewCommentTitle,
+                UserId = CURRENT_USER_ID
             };
 
             RpsCommentsRepo.AddNewComment(commentNew);
