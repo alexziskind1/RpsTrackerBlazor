@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="GenData\fs-items.json" />
+    <None Remove="GenData\fs-users.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="GenData\fs-items.json" />
+    <EmbeddedResource Include="GenData\fs-users.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RPS.Core.Standard\RPS.Core.Standard.csproj" />
+  </ItemGroup>
+
+</Project>
