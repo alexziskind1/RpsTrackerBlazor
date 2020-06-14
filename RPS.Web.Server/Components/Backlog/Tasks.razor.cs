@@ -16,8 +16,6 @@ namespace RPS.Web.Server.Components.Backlog
         [Parameter]
         public PtItem Item { get; set; }
 
-        // public TasksFormModel Model = new TasksFormModel();
-
         public List<PtTask> TaskItems = new List<PtTask>();
 
         public string NewTaskTitle = string.Empty;
@@ -35,9 +33,7 @@ namespace RPS.Web.Server.Components.Backlog
         {
             if (!string.IsNullOrWhiteSpace(NewTaskTitle))
             {
-                // TaskItems.Add(new PtTask { Title = NewTaskTitle });
                 SaveTask();
-               ///TaskItems.Add(createdTask);
                 NewTaskTitle = string.Empty;
             }
         }
@@ -52,6 +48,13 @@ namespace RPS.Web.Server.Components.Backlog
 
              RpsTasksRepo.AddNewTask(taskNew);
         }
+
+        public void DeleteTaskHandler(PtTask t)
+        {
+            RpsTasksRepo.DeleteTask(t.Id, Item.Id);
+            TaskItems.Remove(t);
+        }
+
 
 
     }
