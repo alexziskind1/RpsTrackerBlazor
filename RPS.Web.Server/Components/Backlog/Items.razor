@@ -33,24 +33,24 @@
         <tbody>
             @foreach (var item in PtItems)
             {
-                <tr class="pt-table-row" onclick="location.href = 'Details/@item.Id/Details'">
+            <tr class="pt-table-row" @onclick="(e)=> { RowSelected(item.Id); }">
 
-                    <td>
-                        <ItemTypeIndicator ItemType="@item.Type" ClassName="backlog-icon" />
-                    </td>
-                    <td>
-                        <UserAvatar User="@item.Assignee" />
-                    </td>
-                    <td><span class="li-title">@item.Title</span></td>
-                    <td>
-                        @item.Status
-                    </td>
-                    <td>
-                        <PriorityIndicator priority="@item.Priority" />
-                    </td>
-                    <td><span class="li-estimate">@item.Estimate</span></td>
-                    <td><span class="li-date">@item.DateCreated.ToString("MMM d, yyyy")</span></td>
-                </tr>
+                <td>
+                    <ItemTypeIndicator ItemType="@item.Type" ClassName="backlog-icon" />
+                </td>
+                <td>
+                    <UserAvatar User="@item.Assignee" />
+                </td>
+                <td><span class="li-title">@item.Title</span></td>
+                <td>
+                    @item.Status
+                </td>
+                <td>
+                    <PriorityIndicator priority="@item.Priority" />
+                </td>
+                <td><span class="li-estimate">@item.Estimate</span></td>
+                <td><span class="li-date">@item.DateCreated.ToString("MMM d, yyyy")</span></td>
+            </tr>
             }
         </tbody>
     </table>
@@ -63,6 +63,11 @@
     private void SelectPreset(string presetStr)
     {
         NavigationManager.NavigateTo($"/backlog/{presetStr.ToLower()}");
+    }
+
+    private void RowSelected(int itemId)
+    {
+        NavigationManager.NavigateTo($"/details/{itemId}/details");
     }
 }
 
