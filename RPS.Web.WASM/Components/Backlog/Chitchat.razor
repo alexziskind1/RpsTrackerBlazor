@@ -1,0 +1,34 @@
+﻿
+<div class="form-row align-items-center">
+
+    <UserAvatar User="CurrentUser" ClassName="mr-3 li-avatar rounded" />
+
+    <div class="col-sm-6">
+        <input type="text" @bind="NewCommentTitle" class="form-control" placeholder="Enter new comment..." />
+    </div>
+    <button @onclick="AddCommentHandler" class="btn btn-primary">Add</button>
+</div>
+
+<hr />
+
+<ul id="listComments" class="list-unstyled">
+
+    @foreach (var comment in CommentItems)
+    {
+    <li class="media chitchat-item">
+
+        <UserAvatar User="comment.User" ClassName="mr-3 li-avatar rounded" />
+        <div class="media-body">
+            <h6 class="mt-0 mb-1"><span>@comment.User.FullName</span><span class="li-date">@comment.DateCreated.ToString("MMM d, yyyy")</span></h6>
+
+            <span type="text" class="chitchat-text ">@comment.Title</span>
+        </div>
+    </li>
+    }
+
+</ul>
+
+
+@code {
+
+}

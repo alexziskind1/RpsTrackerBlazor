@@ -1,0 +1,33 @@
+﻿<div class="form-row align-items-center">
+    <div class="col-sm-6">
+        <input type="text" @bind="NewTaskTitle" class="form-control" placeholder="Enter new task..." />
+    </div>
+    <button @onclick="AddTaskHandler" class="btn btn-primary">Add</button>
+</div>
+
+<hr />
+
+@foreach (var task in TaskItems)
+{
+<div class="input-group mb-3 col-sm-8">
+    <div class="input-group-prepend">
+        <div class="input-group-text">
+            <input type="checkbox" @bind="@task.Completed" />
+        </div>
+    </div>
+
+    <input type="text" @bind="@task.Title" class="form-control" />
+
+    <div class="input-group-append">
+        <button asp-page-handler="Delete" @onclick="@(e => DeleteTaskHandler(task))" class="btn btn-danger pt-btn-task-delete">Delete</button>
+
+        
+    </div>
+</div>
+}
+
+
+
+@code {
+
+}

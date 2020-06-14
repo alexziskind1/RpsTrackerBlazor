@@ -1,0 +1,27 @@
+﻿.backlog-icon {
+    height: 20px;
+}
+
+.li-indicator {
+    height: 58px;
+    width: 10px;
+    text-align: left;
+}
+
+    .li-indicator div {
+        width: 5px;
+        height: 58px;
+    }
+
+.li-info-wrapper {
+    margin-left: 5px;
+}
+
+.li-title {
+    font-size: 14px;
+    color: #4b5833;
+}
+
+.pt-table-row {
+    cursor: pointer;
+}

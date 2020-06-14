@@ -1,0 +1,12 @@
+﻿.comp-label strong {
+    font-size: 4em;
+    line-height: 1;
+    font-weight: 200;
+    display: block;
+}
+
+.comp-label small {
+    font-size: .7em;
+    text-transform: uppercase;
+    display: block;
+}

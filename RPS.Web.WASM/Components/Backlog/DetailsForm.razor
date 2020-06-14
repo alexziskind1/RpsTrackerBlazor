@@ -1,0 +1,96 @@
+﻿
+    <EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+
+        <div class="form-group row">
+            <label for="title" class="col-sm-2 col-form-label">Title</label>
+            <div class="col-sm-10">
+                <InputText id="title" @bind-Value="Model.Title" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="description" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+                <InputTextArea id="description" @bind-Value="Model.Description" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="estimate" class="col-sm-2 col-form-label">Estimate</label>
+            <div class="col-sm-10">
+                <InputNumber id="estimate" @bind-Value="Model.Estimate" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="type" class="col-sm-2 col-form-label">Type</label>
+            <div class="col-sm-10">
+                <InputSelect id="type" @bind-Value="Model.SelectedItemType" class="form-control">
+                    @foreach (var item in Model.ItemTypes)
+                    {
+                        <option value="@item.ToString()">@item.ToString()</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="status" class="col-sm-2 col-form-label">Status</label>
+            <div class="col-sm-10">
+                <InputSelect id="status" @bind-Value="Model.SelectedStatus" class="form-control">
+                    @foreach (var item in Model.Statuses)
+                    {
+                        <option value="@item.ToString()">@item.ToString()</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="priority" class="col-sm-2 col-form-label">Priority</label>
+            <div class="col-sm-10">
+                <InputSelect id="priority" @bind-Value="Model.SelectedPriority" class="form-control">
+                    @foreach (var item in Model.Priorities)
+                    {
+                        <option value="@item.ToString()">@item.ToString()</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="assignee" class="col-sm-2 col-form-label">Assignee</label>
+            <div class="col-sm-10">
+                <InputSelect id="assignee" @bind-Value="Model.SelectedAssigneeId" class="form-control">
+                    @foreach (var item in Model.Users)
+                    {
+                        <option value="@item.Id">@item.FullName</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+
+    </EditForm>
+
+
+<div>
+    <NavLink href="Backlog">Back to List</NavLink>
+</div>
+
+@code {
+
+}

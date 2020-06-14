@@ -1,0 +1,114 @@
+﻿@page "/dashboard"
+@page "/dashboard/{Months:int}/{UserId:int}"
+
+
+@inject NavigationManager NavigationManager
+
+<div class="dashboard">
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+
+        <div class="col-md order-md-first text-center text-md-left">
+            <h2>
+                <span class="small text-uppercase text-muted d-block">Statistics</span>
+                @if (DateStart.HasValue && DateEnd.HasValue)
+                {
+    <span id="spanFilteredDateRange">
+        @DateStart.Value.ToString("MMM d, yyyy") - @DateEnd.Value.ToString("MMM d, yyyy")
+    </span>}
+
+            </h2>
+        </div>
+
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <button class="pt-class-range-filter btn btn-outline-secondary" @onclick="@(e => DateRangeFilter(3))">
+                    3 Months
+                </button>
+                <button class="pt-class-range-filter btn btn-outline-secondary" @onclick="@(e => DateRangeFilter(6))">
+                    6 Months
+                </button>
+                <button class="pt-class-range-filter btn btn-outline-secondary" @onclick="@(e => DateRangeFilter(12))">
+                    1 Year
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h3 class="card-header">Active Issues</h3>
+        <div class="card-block">
+
+            <div class="row">
+
+                <div class="col-12 col-lg-6 col-xl pb-4 active-issues">
+                    <span class="comp-label">
+                        <strong>@IssueCountActive</strong>
+                        <small>Active issues</small>
+                    </span>
+                </div>
+
+                <div class="col-12 col-lg-6 col-xl pb-4 text-success closed-issues">
+                    <span class="comp-label">
+                        <strong>@IssueCountClosed</strong>
+                        <small>Closed issues</small>
+                    </span>
+                </div>
+
+                <div class="col-12 col-lg-6 col-xl pb-4 text-danger open-issues">
+                    <span class="comp-label">
+                        <strong>@IssueCountOpen</strong>
+                        <small>Open issues</small>
+                    </span>
+                </div>
+
+                <div class="col-12 col-lg-6 col-xl pb-4 close-rate">
+                    <span class="comp-label">
+                        <strong>@IssueCloseRate</strong>
+                        <small>Close rate</small>
+                    </span>
+                    <p class="m-0 small text-uppercase text-muted">
+                        Highest:
+                        100%
+                        on Oct 11, 2018
+                    </p>
+                    <p class="m-0 small text-uppercase text-muted">
+                        Lowest:
+                        20%
+                        on Oct 9, 2018
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>All issues</h3>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<link href="css/dashboard.css" rel="stylesheet" />
+
+@code { 
+    private void DateRangeFilter(int months)
+    {
+        Months = months;
+        UserId = UserId.HasValue ? UserId.Value : 0;
+        NavigationManager.NavigateTo($"/dashboard/{Months}/{UserId}");
+        Refresh();
+    } 
+}
+
+
+

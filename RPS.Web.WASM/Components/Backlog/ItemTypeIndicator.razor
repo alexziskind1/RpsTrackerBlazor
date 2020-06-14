@@ -1,0 +1,35 @@
+﻿@using RPS.Core.Models.Enums;
+
+<img src="@ImgSrc" class="@ClassName" />
+
+@code {
+
+    [Parameter]
+    public ItemTypeEnum ItemType { get; set; }
+
+    [Parameter]
+    public string ClassName { get; set; }
+
+    public string ImgSrc { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        switch (ItemType)
+        {
+            case ItemTypeEnum.Bug:
+                ImgSrc = "images/icon_bug.png";
+                break;
+            case ItemTypeEnum.Chore:
+                ImgSrc = "images/icon_chore.png";
+                break;
+            case ItemTypeEnum.Impediment:
+                ImgSrc = "images/icon_impediment.png";
+                break;
+            case ItemTypeEnum.PBI:
+                ImgSrc = "images/icon_pbi.png";
+                break;
+        }
+        base.OnParametersSet();
+    }
+
+}

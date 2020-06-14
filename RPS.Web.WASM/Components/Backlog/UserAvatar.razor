@@ -1,0 +1,31 @@
+﻿@using RPS.Core.Models
+
+
+    <img src="@ImgSrc" class="@ClassName" />
+
+
+@code {
+
+    [Parameter]
+    public PtUser User { get; set; }
+
+    [Parameter]
+    public string ClassName { get; set; }
+
+    public string ImgSrc { get; set; }
+
+
+    protected override void OnParametersSet()
+    {
+        string cl = "li-avatar rounded mx-auto d-block";
+        if (!String.IsNullOrEmpty(ClassName))
+        {
+            cl = ClassName;
+        }
+        ClassName = cl;
+
+        ImgSrc = User.Avatar;
+        base.OnParametersSet();
+    }
+
+}

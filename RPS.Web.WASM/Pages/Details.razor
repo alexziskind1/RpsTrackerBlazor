@@ -1,0 +1,34 @@
+﻿@page "/details/{Id:int}/{ScreenParam}"
+
+@using RPS.Web.WASM.Models;
+@using RPS.Web.WASM.Components.Backlog;
+
+<div>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1 class="h2" id="itemTitle">@Item.Title</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <NavLink href=@($"/Details/{Item.Id}/Details") class="btn btn-outline-secondary">Details</NavLink>
+                <NavLink href=@($"/Details/{Item.Id}/Tasks") class="btn btn-outline-secondary">Tasks</NavLink>
+                <NavLink href=@($"/Details/{Item.Id}/Chitchat") class="btn btn-outline-secondary">Chitchat</NavLink>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@{ switch (Screen)
+    {
+        case DetailScreenEnum.Details:
+            <DetailsForm Item="Item" />
+            break;
+        case DetailScreenEnum.Tasks:
+            <Tasks Item="Item"  />
+            break;
+        case DetailScreenEnum.Chitchat:
+            <Chitchat Item="Item"  />
+            break;
+    }
+}
+
+@code { }

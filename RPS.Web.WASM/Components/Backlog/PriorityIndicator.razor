@@ -1,0 +1,36 @@
+﻿@using RPS.Core.Models.Enums
+
+<span class="@ClassName">@Priority</span>
+
+@code {
+    [Parameter]
+    public PriorityEnum Priority { get; set; }
+
+    public string ClassName { get; set; }
+
+    protected override void OnInitialized()
+    {
+        var priorityClassName = "";
+
+        switch (Priority)
+        {
+            case PriorityEnum.Critical:
+                priorityClassName = "priority-critical";
+                break;
+            case PriorityEnum.High:
+                priorityClassName = "priority-high";
+                break;
+            case PriorityEnum.Low:
+                priorityClassName = "priority-low";
+                break;
+            case PriorityEnum.Medium:
+                priorityClassName = "priority-medium";
+                break;
+        }
+
+        ClassName = "badge " + priorityClassName;
+
+
+        base.OnInitialized();
+    }
+}
