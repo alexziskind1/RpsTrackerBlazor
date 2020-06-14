@@ -1,4 +1,15 @@
-﻿<h3>Tasks</h3>
+﻿<ul>
+    @foreach (var task in TaskItems)
+    {
+        <li>
+            <input type="checkbox" @bind="task.Completed" />
+            <input @bind="task.Title" />
+        </li>
+    }
+</ul>
+
+<input placeholder="Something todo" @bind="NewTaskTitle" />
+<button @onclick="AddTaskHandler">Add todo</button>
 
 @code {
 
