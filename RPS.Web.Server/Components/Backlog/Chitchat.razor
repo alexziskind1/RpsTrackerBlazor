@@ -1,4 +1,68 @@
-﻿<h3>Chitchat</h3>
+﻿
+
+ 
+    <div class="form-row align-items-center">
+
+        <user-avatar user="Model.CurrentUser" class="mr-3 li-avatar rounded"></user-avatar>
+        <UserAvatar User="CurrentUser" ClassName="mr-3 li-avatar rounded" />
+
+        <div class="col-sm-6">
+            <input type="text" asp-for="@NewCommentTitle" class="form-control" placeholder="Enter new comment..." />
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+
+
+
+<hr />
+
+<ul id="listComments" class="list-unstyled">
+
+    @foreach (var comment in CommentItems)
+    {
+        <li class="media chitchat-item">
+            <user-avatar user="comment.User" class="mr-3 li-avatar rounded"></user-avatar>
+            <div class="media-body">
+                <h6 class="mt-0 mb-1"><span>@comment.User.FullName</span><span class="li-date">@comment.DateCreated.ToString("MMM d, yyyy")</span></h6>
+
+                <span type="text" class="chitchat-text ">@comment.Title</span>
+            </div>
+        </li>
+    }
+
+</ul>
+
+
+
+
+<div class="form-row align-items-center">
+    <div class="col-sm-6">
+        <input type="text" @bind="NewCommentTitle" class="form-control" placeholder="Enter new comment..." />
+    </div>
+    <button @onclick="AddCommentHandler" class="btn btn-primary">Add</button>
+</div>
+
+<hr />
+
+@foreach (var comment in CommentItems)
+{
+    <div class="input-group mb-3 col-sm-8">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+
+            </div>
+        </div>
+
+        <input type="text" @bind="@comment.Title" class="form-control" />
+
+        <div class="input-group-append">
+
+
+        </div>
+    </div>
+}
+
+
 
 @code {
 
